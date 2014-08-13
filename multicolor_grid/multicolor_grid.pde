@@ -1,15 +1,14 @@
 Cell[][] grid;
 
-int colums = 10;
-int rows = 10;
-
+int colums = 80;
+int rows = 80;
 
 void setup(){
-  size(400,400);
+  size(800,800);
   grid = new Cell[colums][rows];
   for(int i = 0; i < colums; i++){
     for(int j = 0; j < rows; j++){
-      grid[i][j] = new Cell(i*40, j*40, 40, 40, i+j);
+      grid[i][j] = new Cell(i*15, j*15, width/60, height/60, i+j);
     }
   }
 }
@@ -42,6 +41,5 @@ class Cell{
     fill(random(255), random(255), random(255));
     rect(x,y,w,h);
   }
-  
 }
 
