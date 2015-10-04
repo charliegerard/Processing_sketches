@@ -11,9 +11,10 @@ void setup(){
   noFill();
   smooth();
   for(int i=0; i< nb; i++){
+
     circles[i] = new PVector(0,0, map(i,0,nb - 1, zmax, zmin));
-    colors[i] = color(random(110, 255), 0, random(60, 150));
-    colors[i] = color(random(220, 255), 255, 255);
+    //colors[i] = color(random(110, 255), 0, random(60, 150));
+    //colors[i] = color(random(220, 255), 255, 255);
   }
 }
 
@@ -35,6 +36,7 @@ void draw(){
     float r = map(pv.z, zmin, zmax, rad*.1, rad);
     
     pushMatrix();
+    color(random(255), random(255), random(255));
     translate(pv.x, pv.y, pv.z);
     ellipse(0, 0, r, r);
     popMatrix();
