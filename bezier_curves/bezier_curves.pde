@@ -1,7 +1,13 @@
+import gifAnimation.*;
+GifMaker gifExport;
+
 void setup(){
  size(600, 400);
  background(0);
  smooth();
+ 
+ gifExport = new GifMaker(this, "test.gif");
+ gifExport.setRepeat(0);
 }
   
 void draw(){
@@ -12,7 +18,7 @@ void draw(){
  strokeWeight(1);
  
  float t = frameCount / 200.00;
- for(int i = 0; i < 3; i++){
+ for(int i = 0; i < 10; i++){
    bezier(
      0, height/2,
      0, noise(1, i, t)*height,
@@ -20,4 +26,10 @@ void draw(){
      width, noise(4,i, t)*height
      );
  }
+ if (frameCount%2==0 &&  frameCount<10000) {
+    gifExport.setDelay(5); // = speed of the animated GIF
+    gifExport.addFrame();
+  }
+if (frameCount>121) gifExport.finish();
+
 }
