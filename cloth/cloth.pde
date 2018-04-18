@@ -2,14 +2,15 @@ float xstart, ystart, squaresize;
 
 void setup() {
   size(600, 600);
-  background(150);
+  background(0);
   xstart = random(100);
   ystart = random(100);
   squaresize = height/10;
 }
 
 void draw() {
-  fill(150, 150, 150, 15);
+  //fill(150, 150, 150, 15);
+  fill(0, 0, 0, 15);
   noStroke();
   rect(0, 0, width, height);
 
@@ -29,6 +30,8 @@ void draw() {
       drawPoint(x, y, noise(xnoise, ynoise));
     }
   }
+  
+  saveFrame("output/cloth_####.tif");
 }
 
 void drawPoint(float x, float y, float noiseFactor) {

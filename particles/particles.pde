@@ -4,8 +4,11 @@ float FORCE = 6.0;
 
 ArrayList<Particle> particles;
 
+boolean animationStarted = false;
+
 void setup(){
   size(500, 500);
+  //fullScreen();
   smooth();
   noStroke();
   frameRate(24);  
@@ -17,17 +20,22 @@ void setup(){
 
 void draw(){
   background(0);
-  pushMatrix();
-  translate(width/2, height/2);
-  for(Particle particle : particles){
-    particle.draw();
+  
+  if(animationStarted){
+    pushMatrix();
+    translate(width/2, height/2);
+    for(Particle particle : particles){
+      particle.draw();
+    }
+    
+    popMatrix();
+    
+    for(Particle particle : particles){
+      particle.update();
+    }
   }
   
-  popMatrix();
-  
-  for(Particle particle : particles){
-    particle.update();
-  }
+  saveFrame("output/particles_###.png");
 }
 
 class Particle{
@@ -52,4 +60,12 @@ class Particle{
     velocity.add(acceleration);
     position.add(velocity);
   }
+}
+
+void mousePressed(){
+  animationStarted = true;
+}
+
+void mouseReleased(){
+  animationStarted = false;
 }
